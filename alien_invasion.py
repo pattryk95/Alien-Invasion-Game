@@ -1,8 +1,9 @@
-import sys
 import pygame as pg
 
 from settings import Settings
 from ship import Ship
+from game_functions import check_event, update_screen
+
 
 def run_game():
     pg.init()
@@ -12,14 +13,8 @@ def run_game():
     ship = Ship(screen)
 
     while True:
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                sys.exit()
-
-        screen.fill(ai_settings.bg_color)
-        ship.blitme()
-
-        pg.display.flip()
+        check_event()
+        update_screen(ai_settings, screen, ship)
 
 
 run_game()
