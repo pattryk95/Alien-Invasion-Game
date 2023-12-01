@@ -10,7 +10,7 @@ def run_game():
     ai_settings = Settings()
     screen = pg.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pg.display.set_caption("Inwacja Obcych")
-    ship = Ship(screen)
+    ship = Ship(ai_settings, screen)
 
     while True:
         check_event(ship)

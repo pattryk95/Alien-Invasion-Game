@@ -19,6 +19,7 @@ def check_event(ship):
             elif event.key == pg.K_LEFT:
                 ship.moving_left = False
 
+
 def update_screen(ai_settings, screen, ship):
     screen.fill(ai_settings.bg_color)
     ship.blitme()
