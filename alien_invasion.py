@@ -3,7 +3,7 @@ from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
-from game_functions import check_events, update_screen
+from game_functions import check_events, update_screen, update_bullets
 
 
 def run_game():
@@ -17,10 +17,7 @@ def run_game():
     while True:
         check_events(ai_settings, screen, ship, bullets)
         ship.update()
-        bullets.update()
-        for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)
+        update_bullets(bullets)
 
         update_screen(ai_settings, screen, ship, bullets)
 

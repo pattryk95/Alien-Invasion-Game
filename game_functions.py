@@ -38,5 +38,11 @@ def update_screen(ai_settings, screen, ship, bullets):
         bullet.draw_bullet()
 
     ship.blitme()
-
     pg.display.flip()
+
+
+def update_bullets(bullets):
+    bullets.update()
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
