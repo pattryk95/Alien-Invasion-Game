@@ -1,8 +1,9 @@
 import pygame as pg
+from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
-from game_functions import check_event, update_screen
+from game_functions import check_events, update_screen
 
 
 def run_game():
@@ -11,11 +12,17 @@ def run_game():
     screen = pg.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pg.display.set_caption("Inwacja Obcych")
     ship = Ship(ai_settings, screen)
+    bullets = Group()
 
     while True:
-        check_event(ship)
+        check_events(ai_settings, screen, ship, bullets)
         ship.update()
-        update_screen(ai_settings, screen, ship)
+        bullets.update()
+        for bullet in bullets.copy():
+            if bullet.rect.bottom <= 0:
+                bullets.remove(bullet)
+
+        update_screen(ai_settings, screen, ship, bullets)
 
 
 run_game()
