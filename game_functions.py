@@ -18,6 +18,8 @@ def check_keyup_events(event, ship):
         ship.moving_right = False
     elif event.key == pg.K_LEFT:
         ship.moving_left = False
+    elif event.key == pg.K_ESCAPE:
+        sys.exit()
 
 
 def check_events(ai_settings, screen, ship, bullets):
@@ -30,12 +32,13 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(ai_settings, screen, ship, bullets):
+def update_screen(ai_settings, screen, ship, alien, bullets):
     screen.fill(ai_settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
 
     ship.blitme()
+    alien.blitme()
     pg.display.flip()
 
 
@@ -44,6 +47,7 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
 
 def fire_bullet(ai_settings, screen, ship, bullets):
     if len(bullets) < ai_settings.bullets_allowed:
